@@ -1,4 +1,4 @@
-/*! p5.js v1.11.12 March 30, 2026 */
+/*! p5.js v1.11.13 April 08, 2026 */
 (function (f) {
   if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = f()
@@ -59397,7 +59397,7 @@
  * @property {String} VERSION
  * @final
  */
-        var VERSION = '1.11.12';
+        var VERSION = '1.11.13';
         // GRAPHICS RENDERER
         /**
  * The default, two-dimensional renderer.
@@ -141002,16 +141002,24 @@
         _main.default.RendererGL.prototype._drawPoints = function (vertices, pointBuffers) {
           var gl = this.GL;
           var pointShader = this._getImmediatePointShader();
-          this._setPointUniforms(pointShader);
-          // Prepare position and optional per-vertex color buffers
           if (Array.isArray(pointBuffers)) {
+            var geom = this.immediateMode.geometry;
+            if (geom.vertices !== vertices) {
+              geom.vertices = vertices;
+              geom.dirtyFlags.vertices = true;
+              if (geom.vertexStrokeColors.length > 0) {
+                geom.vertexStrokeColors.length = 0;
+                geom.dirtyFlags.vertexStrokeColors = true;
+              }
+            }
+            this._setPointUniforms(pointShader);
             var _iteratorNormalCompletion4 = true;
             var _didIteratorError4 = false;
             var _iteratorError4 = undefined;
             try {
               for (var _iterator4 = pointBuffers[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                 var buff = _step4.value;
-                buff._prepareBuffer(this.immediateMode.geometry, pointShader);
+                buff._prepareBuffer(geom, pointShader);
               }
             } catch (err) {
               _didIteratorError4 = true;
@@ -141028,7 +141036,7 @@
               }
             }
           } else {
-            // Backward compatibility if a raw GL buffer is passed
+            this._setPointUniforms(pointShader);
             this._bindBuffer(pointBuffers, gl.ARRAY_BUFFER, this._vToNArray(vertices), Float32Array, gl.STATIC_DRAW);
             pointShader.enableAttrib(pointShader.attributes.aPosition, 3);
           }
