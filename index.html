@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>p5.js 과제 포트폴리오</title>
+  <title>p5.js 포트폴리오</title>
   <style>
     * {
       margin: 0;
@@ -14,8 +14,8 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center; /* 화면 상하 기준 정중앙 */
-      align-items: center;     /* 화면 좌우 기준 정중앙 */
+      justify-content: center;
+      align-items: center;
       min-height: 100vh;
       background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -23,7 +23,6 @@
       padding: 50px 24px;
     }
 
-    /* 상단 문구 디자인 */
     .header-text {
       text-align: center;
       margin-bottom: 40px;
@@ -42,41 +41,61 @@
       margin-top: 10px;
     }
 
-    /* 2x2 그리드 배열 */
     #projects {
       display: grid;
       grid-template-columns: 1fr 1fr;
       width: 100%;
-      max-width: 850px; /* 액자 크기에 맞춰 살짝 넓힘 */
+      max-width: 900px;   
       gap: 30px;
     }
 
-    /* 개별 액자(프레임) 디자인 */
     #projects .cell {
-      aspect-ratio: 3 / 2; /* 600x400 캔버스 크기에 맞춘 완벽한 3:2 비율 */
-      position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       background-color: #ffffff;
       border: none;
       border-radius: 16px;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
+      overflow: hidden;
     }
 
     #projects .cell:hover {
       transform: translateY(-8px); 
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
+    .canvas-box {
+      aspect-ratio: 3 / 2;
+      position: relative;
+      background-color: #f8f9fa; 
+    }
 
-    /* p5.js 캔버스를 액자 정중앙에 끼워 넣기 */
-    #projects .cell iframe {
+    .canvas-box iframe {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 600px;  /* 실제 캔버스 가로 크기 */
-      height: 400px; /* 실제 캔버스 세로 크기 */
+      width: 600px;
+      height: 400px;
       border: none;
-      transform: translate(-50%, -50%) scale(0.65); /* 정중앙 이동 후 알맞게 축소 */
+      transform: translate(-50%, -50%) scale(0.65);
+    }
+
+    
+    .text-box {
+      padding: 15px 20px;
+      text-align: center;
+      border-top: 1px solid #eeeeee; 
+    }
+
+    .text-box h3 {
+      font-size: 1.05rem;
+      color: #2c3e50;
+      margin-bottom: 6px;
+    }
+
+    .text-box p {
+      font-size: 0.9rem;
+      color: #7f8c8d;
     }
   </style>
 </head>
@@ -89,16 +108,43 @@
 
   <main id="projects">
     <div class="cell">
-      <iframe src="work1/index.html"></iframe>
+      <div class="canvas-box">
+        <iframe src="work1/index.html"></iframe>
+      </div>
+      <div class="text-box">
+        <h3>과제 1: 추상화 그리기</h3>
+        
+      </div>
     </div>
+
     <div class="cell">
-      <iframe src="work4/index.html"></iframe>
+      <div class="canvas-box">
+        <iframe src="work4/index.html"></iframe>
+      </div>
+      <div class="text-box">
+        <h3>과제 4: 추상화에 움직임 넣기</h3>
+        
+      </div>
     </div>
+
     <div class="cell">
-      <iframe src="work2/index.html"></iframe>
+      <div class="canvas-box">
+        <iframe src="work2/index.html"></iframe>
+      </div>
+      <div class="text-box">
+        <h3>과제 2: 캐릭터 그리기</h3>
+        
+      </div>
     </div>
+
     <div class="cell">
-      <iframe src="work3/index.html"></iframe>
+      <div class="canvas-box">
+        <iframe src="work3/index.html"></iframe>
+      </div>
+      <div class="text-box">
+        <h3>과제 3: 움직이는 캐릭터 그리기</h3>
+
+      </div>
     </div>
   </main>
 
