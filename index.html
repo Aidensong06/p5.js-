@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>p5.js 과제 포트폴리오</title> <style>
+  <title>p5.js 과제 포트폴리오</title>
+  <style>
     * {
       margin: 0;
       padding: 0;
@@ -13,14 +14,16 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center; 
-      align-items: center;     
+      justify-content: center; /* 화면 상하 기준 정중앙 */
+      align-items: center;     /* 화면 좌우 기준 정중앙 */
       min-height: 100vh;
       background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #2c3e50;
+      padding: 50px 24px;
     }
 
+    /* 상단 문구 디자인 */
     .header-text {
       text-align: center;
       margin-bottom: 40px;
@@ -33,23 +36,24 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-   
     .header-text p {
       font-size: 1.1rem;
       color: #7f8c8d;
       margin-top: 10px;
     }
 
+    /* 2x2 그리드 배열 */
     #projects {
       display: grid;
       grid-template-columns: 1fr 1fr;
       width: 100%;
-      max-width: 800px;
+      max-width: 850px; /* 액자 크기에 맞춰 살짝 넓힘 */
       gap: 30px;
     }
 
+    /* 개별 액자(프레임) 디자인 */
     #projects .cell {
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 3 / 2; /* 600x400 캔버스 크기에 맞춘 완벽한 3:2 비율 */
       position: relative;
       overflow: hidden;
       background-color: #ffffff;
@@ -64,22 +68,22 @@
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
 
+    /* p5.js 캔버스를 액자 정중앙에 끼워 넣기 */
     #projects .cell iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 600px;
-      height: 400px;
+      top: 50%;
+      left: 50%;
+      width: 600px;  /* 실제 캔버스 가로 크기 */
+      height: 400px; /* 실제 캔버스 세로 크기 */
       border: none;
-      transform-origin: top left;
-      transform: scale(0.5);
+      transform: translate(-50%, -50%) scale(0.65); /* 정중앙 이동 후 알맞게 축소 */
     }
   </style>
 </head>
 <body>
 
   <div class="header-text">
-    <h1>p5.js 과제 최종 제출</h1>
+    <h1>p5.js 최종 과제 제출</h1>
     <p>20253014 송제언</p>
   </div>
 
